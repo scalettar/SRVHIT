@@ -70,14 +70,14 @@
         <div class="form columns">
           <h2>Register</h2>
 
-          <form>
-            <input type="text" placeholder="First Name" required>
-            <input type="text" placeholder="Last Name" required>
-            <input type="email" placeholder="Email Address (example@****.edu)" required>
-            <input type="text" placeholder="Zip Code" required>
-            <input type="password" placeholder="Password" required>
-            <input type="password" placeholder="Confirm Password" required>
-            <input type="submit" value="Register" class="button">
+          <form action="register.php" method="post">
+            <input type="text" name="givenname" placeholder="First Name" required>
+            <input type="text" name="surname" placeholder="Last Name" required>
+            <input type="email" name="email" placeholder="Email Address (example@****.edu)" required>
+            <input type="text" name="zip" placeholder="Zip Code" required>
+            <input type="password" name="pw" placeholder="Password" required>
+            <input type="password" name="pwconfirm" placeholder="Confirm Password" required>
+            <input type="submit" name="register" value="Register" class="button">
           </form>
 
           <a href="forgot-password.html" class="link">Forgot Password?</a>
