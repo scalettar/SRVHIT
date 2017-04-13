@@ -1,0 +1,1 @@
+USE teamnull; SELECT * FROM users;
