@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>SRVHIT - Register</title>
+    <title>SRVHIT - Home</title>
 
     <link href="css/bundle.css" rel="stylesheet">
 
@@ -24,7 +24,7 @@
 
         <!-- start: brand -->
         <div id="brand" class="columns">
-          <a href="index.html">
+          <a href="index.php">
             <img src="images/srvhit_logo.png" alt="">
           </a>
         </div>
@@ -35,10 +35,10 @@
           <img class="mobile-only" src="images/icon_menu.svg" alt="">
 
           <ul class="desktop-menu desktop-only">
-            <li><a href="logged-in-talent.html">For Students</a></li>
-            <li><a href="logged-in-business.html">For Businesses</a></li>
+            <li><a href="logged-in-talent.php">For Students</a></li>
+            <li><a href="logged-in-business.php">For Businesses</a></li>
             <li><a href="">Contact Us</a></li>
-            <li><a href="login.html">Log In</a></li>
+            <li><a href="login.php">Log In</a></li>
           </ul>
         </nav>
         <!-- start: desktop nav -->
@@ -50,10 +50,10 @@
         <div class="row">
 
           <ul class="mobile-menu">
-            <li><a href="logged-in-talent.html">For Students</a></li>
-            <li><a href="logged-in-business.html">For Businesses</a></li>
+            <li><a href="logged-in-talent.php">For Students</a></li>
+            <li><a href="logged-in-business.php">For Businesses</a></li>
             <li><a href="">Contact Us</a></li>
-            <li><a href="login.html">Log In</a></li>
+            <li><a href="login.php">Log In</a></li>
           </ul>
 
         </div>
@@ -64,25 +64,39 @@
     <!-- end: header -->
 
     <div class="container">
-      <div class="row">
+      <div class="row landing">
 
-        <!-- start: register form -->
-        <div class="form columns">
-          <h2>Register</h2>
+        <!-- start: for students -->
+        <div id="students" class="columns">
+          <div class="icon">
+            <img src="images/icon_students.svg" alt="">
+          </div>
 
-          <form action="register.php" method="post">
-            <input type="text" name="givenname" placeholder="First Name" required>
-            <input type="text" name="surname" placeholder="Last Name" required>
-            <input type="email" name="email" placeholder="Email Address (example@****.edu)" required>
-            <input type="text" name="zip" placeholder="Zip Code" required>
-            <input type="password" name="pw" placeholder="Password" required>
-            <input type="password" name="pwconfirm" placeholder="Confirm Password" required>
-            <input type="submit" name="register" value="Register" class="button">
-          </form>
+          <h2>Students</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et sagittis orci, eu lacinia massa. Proin in elementum quam. Mauris facilisis aliquam lorem ut luctus.</p>
 
-          <a href="forgot-password.html" class="link">Forgot Password?</a>
+          <a href="login.php" class="button">Find Opportunity</a>
         </div>
-        <!-- end: register form -->
+        <!--end: for students -->
+
+        <!-- start: separator -->
+        <div id="or" class="columns">
+          <span>or</span>
+        </div>
+        <!-- end: separator -->
+
+        <!-- start: for businesses -->
+        <div id="businesses" class="columns">
+          <div class="icon">
+            <img src="images/icon_businesses.svg" alt="">
+          </div>
+
+          <h2>Businesses</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et sagittis orci, eu lacinia massa. Proin in elementum quam. Mauris facilisis aliquam lorem ut luctus.</p>
+
+          <a href="login.php" class="button">Find Talent</a>
+        </div>
+        <!-- end: for businesses -->
 
       </div>
     </div>

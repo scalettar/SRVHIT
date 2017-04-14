@@ -24,7 +24,7 @@
 
         <!-- start: brand -->
         <div id="brand" class="columns">
-          <a href="index.html">
+          <a href="index.php">
             <img src="images/srvhit_logo.png" alt="">
           </a>
         </div>
@@ -35,10 +35,10 @@
           <img class="mobile-only" src="images/icon_menu.svg" alt="">
 
           <ul class="desktop-menu desktop-only">
-            <li><a href="logged-in-talent.html">For Students</a></li>
-            <li><a href="logged-in-business.html">For Businesses</a></li>
+            <li><a href="logged-in-talent.php">For Students</a></li>
+            <li><a href="logged-in-business.php">For Businesses</a></li>
             <li><a href="">Contact Us</a></li>
-            <li><a href="login.html">Log In</a></li>
+            <li><a href="login.php">Log In</a></li>
           </ul>
         </nav>
         <!-- start: desktop nav -->
@@ -50,10 +50,10 @@
         <div class="row">
 
           <ul class="mobile-menu">
-            <li><a href="logged-in-talent.html">For Students</a></li>
-            <li><a href="logged-in-business.html">For Businesses</a></li>
+            <li><a href="logged-in-talent.php">For Students</a></li>
+            <li><a href="logged-in-business.php">For Businesses</a></li>
             <li><a href="">Contact Us</a></li>
-            <li><a href="login.html">Log In</a></li>
+            <li><a href="login.php">Log In</a></li>
           </ul>
 
         </div>
@@ -76,7 +76,7 @@
             <button class="button" type="button" value="Login">Login</button>
           </form>
 
-          <a href="register.html" class="link">New User? Register</a>
+          <a href="register.php" class="link">New User? Register</a>
         </div>
         <!-- end: Login form -->
 

@@ -25,7 +25,7 @@
         <!-- start: brand -->
         <div id="brand" class="columns">
           <div class="logo">
-            <a href="index.html">
+            <a href="index.php">
               <img src="images/srvhit_logo.png" alt="">
             </a>
             <span class="sep desktop-only"></span>
@@ -34,7 +34,7 @@
           <!-- start: search desktop -->
           <div class="input-wrapper desktop-only">
             <input class="search" type="text" placeholder="Search for Opportunities">
-            <input class="search-button" type="button" value=" " onclick="location.href='results-opportunities.html';">
+            <input class="search-button" type="button" value=" " onclick="location.href='results-opportunities.php';">
           </div>
           <!-- end: search desktop -->
 
@@ -46,7 +46,7 @@
           <img class="mobile-only" src="images/icon_menu.svg" alt="">
 
           <ul class="desktop-menu desktop-only">
-            <li><a href="index.html">Viktor Kuko, Logout</a></li>
+            <li><a href="index.php">Viktor Kuko, Logout</a></li>
           </ul>
         </nav>
         <!-- end: desktop nav -->
@@ -58,7 +58,7 @@
 
           <!-- Start: mobile nav -->
           <ul class="mobile-menu">
-            <li><a href="index.html">Viktor Kuko, Logout</a></li>
+            <li><a href="index.php">Viktor Kuko, Logout</a></li>
           </ul>
           <!-- end: mobile nav -->
 
@@ -71,7 +71,7 @@
 
           <div class="input-wrapper mobile">
             <input class="search mobile-only" type="text" placeholder="Search for Opportunities">
-            <input class="search-button mobile-only" type="button" value=" " onclick="location.href='results-opportunities.html';">
+            <input class="search-button mobile-only" type="button" value=" " onclick="location.href='results-opportunities.php';">
           </div>
 
         </div>
