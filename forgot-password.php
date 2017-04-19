@@ -84,7 +84,7 @@
 
     <!-- start: footer -->
     <footer>
-      <p>© Copyright SrvHit 2017</p>
+      <p>© Copyright SRVHIT 2017</p>
     </footer>
     <!-- end: footer -->
 

@@ -1,6 +1,6 @@
 <?php
-$host = 'athena.ecs.csus.edu:3306';
-$dbname = 'teamnull';
-$username = 'teamnull';
-$password = 'teamnull_db';
+$host = '127.0.0.1';
+$dbname = 'test';
+$username = 'root';
+$password = '';
 ?>
