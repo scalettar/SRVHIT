@@ -46,7 +46,7 @@
           <img class="mobile-only" src="images/icon_menu.svg" alt="">
 
           <ul class="desktop-menu desktop-only">
-            <li><a href="index.php">Viktor Kuko, Logout</a></li>
+            <li><a href="logout.php?logout=true">Logout</a></li>
           </ul>
         </nav>
         <!-- end: desktop nav -->
@@ -58,7 +58,7 @@
 
           <!-- Start: mobile nav -->
           <ul class="mobile-menu">
-            <li><a href="index.php">Viktor Kuko, Logout</a></li>
+            <li><a href="logout.php?logout=true">Logout</a></li>
           </ul>
           <!-- end: mobile nav -->
 

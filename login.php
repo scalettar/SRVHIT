@@ -1,3 +1,23 @@
+<?php
+require_once 'dbconnect.php';
+
+if($user->is_loggedin()!=""){
+  $user->redirect('logged-in-talent.php');
+}
+
+if(isset($_POST['btn-login'])){
+  $useremail = $_POST['useremail'];
+  $userpw = $_POST['userpw'];
+
+  if($user->login($useremail, $userpw)){
+    $user->redirect('logged-in-talent.php');
+  }
+  else{
+    $error = "Incorrect email/password combination";
+  }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -71,9 +91,9 @@
           <h2>Log In</h2>
 
           <form action = "login.php" method = "post">
-            <input type="email" placeholder="Enter your email" required>
-            <input type="password" placeholder="Enter your password" required>
-            <button class="button" type="button" value="Login">Login</button>
+            <input type="email" name="useremail" placeholder="Enter your email" required>
+            <input type="password" name="userpw" placeholder="Enter your password" required>
+            <input type="submit" name="btn-login" value="Login" class="button">
           </form>
 
           <a href="register.php" class="link">New User? Register</a>
