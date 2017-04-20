@@ -8,6 +8,8 @@ if($user->is_loggedin()!=""){
 if(isset($_POST['btn-register'])){
     $useremail = !empty($_POST['useremail']) ? trim($_POST['useremail']) : null;
     $userpw = !empty($_POST['userpw']) ? trim($_POST['userpw']) : null;
+    $firstname = !empty($_POST['firstname']) ? trim($_POST['firstname']) : null;
+    $lastname = !empty($_POST['lastname']) ? trim($_POST['lastname']) : null;
 
     //try{
       $stmt = $conn->prepare("SELECT useremail FROM users WHERE useremail=:useremail");
