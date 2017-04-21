@@ -10,6 +10,7 @@ if(isset($_POST['btn-register'])){
     $userpw = !empty($_POST['userpw']) ? trim($_POST['userpw']) : null;
     $firstname = !empty($_POST['firstname']) ? trim($_POST['firstname']) : null;
     $lastname = !empty($_POST['lastname']) ? trim($_POST['lastname']) : null;
+    $userpwcheck = !empty($_POST['userpwcheck']) ? trim($_POST['userpwcheck']) : null;
 
     //try{
       $stmt = $conn->prepare("SELECT useremail FROM users WHERE useremail=:useremail");
@@ -18,6 +19,9 @@ if(isset($_POST['btn-register'])){
 
       if($row['useremail']==$useremail){
         $error[] = "email already in use";
+      }
+      elseif ($userpw!=$userpwcheck) {
+        $error[] = "passwords do not match";
       }
       else{
         if($user->register($firstname,$lastname,$useremail,$userpw)){
@@ -98,6 +102,28 @@ if(isset($_POST['btn-register'])){
         <!-- start: register form -->
         <div class="form columns">
           <h2>Register</h2>
+
+    <?php
+if(isset($error))
+{
+foreach($error as $error)
+{
+   ?>
+             <div class="alert alert-danger">
+                <i class="glyphicon glyphicon-warning-sign"></i> &nbsp; <?php echo $error; ?>
+             </div>
+             <?php
+}
+}
+else if(isset($_GET['joined']))
+{
+ ?>
+         <div class="alert alert-info">
+              <i class="glyphicon glyphicon-log-in"></i> &nbsp; Successfully registered <a href='index.php'>login</a> here
+         </div>
+         <?php
+}
+?>
 
           <form action="register.php" method="post">
             <input type="text" name="firstname" placeholder="First Name" required>
