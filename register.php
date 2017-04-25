@@ -42,6 +42,7 @@ if(isset($_POST['btn-register'])){
 
     <link href="css/bundle.css" rel="stylesheet">
 
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -132,6 +133,7 @@ else if(isset($_GET['joined']))
             <input type="text" name="zip" placeholder="Zip Code" required>
             <input type="password" name="userpw" placeholder="Password" required>
             <input type="password" name="userpwcheck" placeholder="Confirm Password" required>
+            <input type="text" name="acctype" placeholder="Business or Student" required>
             <input type="submit" name="btn-register" value="Register" class="button">
           </form>
 
