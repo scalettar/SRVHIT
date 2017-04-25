@@ -11,6 +11,7 @@ if(isset($_POST['btn-register'])){
     $firstname = !empty($_POST['firstname']) ? trim($_POST['firstname']) : null;
     $lastname = !empty($_POST['lastname']) ? trim($_POST['lastname']) : null;
     $userpwcheck = !empty($_POST['userpwcheck']) ? trim($_POST['userpwcheck']) : null;
+    $acctype = !empty($_POST['acctype']) ? trim($_POST['acctype']) : null;
 
     //try{
       $stmt = $conn->prepare("SELECT useremail FROM users WHERE useremail=:useremail");
@@ -24,7 +25,7 @@ if(isset($_POST['btn-register'])){
         $error[] = "passwords do not match";
       }
       else{
-        if($user->register($firstname,$lastname,$useremail,$userpw)){
+        if($user->register($firstname,$lastname,$useremail,$userpw,$acctype)){
           $user->redirect('login.php'); //probably should tell the user they are registered first
         }
       }
