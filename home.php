@@ -1,3 +1,16 @@
+<?php
+include_once 'dbconnect.php';
+
+if(!$user->is_loggedin()){
+  $user->redirect('index.php');
+}
+
+$userid = $_SESSION['user_session'];
+$stmt = $conn->prepare("SELECT * FROM users WHERE userid=:userid");
+$stmt->execute(array(":userid"=>$userid));
+$userRow=$stmt->fetch(PDO::FETCH_ASSOC);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,7 +18,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>SRVHIT - Logged in - Talent</title>
+    <title>SRVHIT - Home</title>
 
     <link href="css/bundle.css" rel="stylesheet">
 
@@ -33,7 +46,7 @@
 
           <!-- start: search desktop -->
           <div class="input-wrapper desktop-only">
-            <input class="search" type="text" placeholder="Search for Opportunities">
+            <input class="search" type="text" placeholder="Search">
             <input class="search-button" type="button" value=" " onclick="location.href='results-opportunities.php';">
           </div>
           <!-- end: search desktop -->
@@ -58,7 +71,7 @@
 
           <!-- Start: mobile nav -->
           <ul class="mobile-menu">
-            <li><a href="logout.php?logout=true">Logout</a></li>
+            <li><a href="logout.php?logout=true">Logout (<?php print($userRow['useremail']);?>)</a></li>
           </ul>
           <!-- end: mobile nav -->
 
@@ -70,7 +83,7 @@
         <div class="row">
 
           <div class="input-wrapper mobile">
-            <input class="search mobile-only" type="text" placeholder="Search for Opportunities">
+            <input class="search mobile-only" type="text" placeholder="Search">
             <input class="search-button mobile-only" type="button" value=" " onclick="location.href='results-opportunities.php';">
           </div>
 
@@ -101,7 +114,7 @@
             </div>
 
             <div class="bio">
-              <h4>Viktor Kuko</h4>
+              <h4><?php print($userRow['firstname']); print " "; print($userRow['lastname']);?></h4>
               <p class="location"><span class="icon-location"><img src="images/icon_location.svg" alt=""></span>Sacramento, CA</p>
             </div>
 

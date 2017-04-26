@@ -2,7 +2,11 @@
 require_once 'dbconnect.php';
 
 if($user->is_loggedin()!=""){
-  $user->redirect('logged-in-talent.php');
+  $user->redirect('home.php');
+}
+
+if($user->is_loggedin()!=""){
+  $user->redirect('home.php');
 }
 
 if(isset($_POST['btn-register'])){
@@ -11,6 +15,7 @@ if(isset($_POST['btn-register'])){
     $firstname = !empty($_POST['firstname']) ? trim($_POST['firstname']) : null;
     $lastname = !empty($_POST['lastname']) ? trim($_POST['lastname']) : null;
     $userpwcheck = !empty($_POST['userpwcheck']) ? trim($_POST['userpwcheck']) : null;
+    $isbusiness = $_POST['isbusiness'];
 
     //try{
       $stmt = $conn->prepare("SELECT useremail FROM users WHERE useremail=:useremail");
@@ -24,10 +29,11 @@ if(isset($_POST['btn-register'])){
         $error[] = "passwords do not match";
       }
       else{
-        if($user->register($firstname,$lastname,$useremail,$userpw)){
+        if($user->register($firstname,$lastname,$useremail,$userpw, $isbusiness)){
           $user->redirect('login.php'); //probably should tell the user they are registered first
         }
       }
+    //}
 }
 ?>
 
@@ -104,26 +110,25 @@ if(isset($_POST['btn-register'])){
         <div class="form columns">
           <h2>Register</h2>
 
-    <?php
-if(isset($error))
-{
-foreach($error as $error)
-{
-   ?>
-             <div class="alert alert-danger">
+<?php
+          if(isset($error)){
+            foreach($error as $error)
+            {
+?>
+              <div class="alert alert-danger">
                 <i class="glyphicon glyphicon-warning-sign"></i> &nbsp; <?php echo $error; ?>
-             </div>
-             <?php
-}
-}
-else if(isset($_GET['joined']))
-{
- ?>
-         <div class="alert alert-info">
+              </div>
+<?php
+            }
+          }
+          else if(isset($_GET['joined']))
+          {
+?>
+            <div class="alert alert-info">
               <i class="glyphicon glyphicon-log-in"></i> &nbsp; Successfully registered <a href='index.php'>login</a> here
-         </div>
-         <?php
-}
+            </div>
+<?php
+          }
 ?>
 
           <form action="register.php" method="post">
@@ -133,7 +138,9 @@ else if(isset($_GET['joined']))
             <input type="text" name="zip" placeholder="Zip Code" required>
             <input type="password" name="userpw" placeholder="Password" required>
             <input type="password" name="userpwcheck" placeholder="Confirm Password" required>
-            <input type="text" name="acctype" placeholder="Business or Student" required>
+            This account will belong to a business
+            <input type="hidden" name="isbusiness" value="0">
+            <input type="checkbox" name="isbusiness" value="1">
             <input type="submit" name="btn-register" value="Register" class="button">
           </form>
 

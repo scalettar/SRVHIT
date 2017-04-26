@@ -1,8 +1,8 @@
 <?php
 require_once 'dbconnect.php';
 
-if($user->is_loggedin()!=""){
-  $user->redirect('logged-in-talent.php');
+if($user->is_loggedin()){
+  $user->redirect('home.php');
 }
 
 if(isset($_POST['btn-login'])){
@@ -10,7 +10,7 @@ if(isset($_POST['btn-login'])){
   $userpw = $_POST['userpw'];
 
   if($user->login($useremail, $userpw)){
-    $user->redirect('logged-in-talent.php');
+    $user->redirect('home.php');
   }
   else{
     $error = "Incorrect email/password combination";
