@@ -8,19 +8,31 @@ class USER
       $this->db = $conn;
     }
 
+<<<<<<< HEAD
     public function register($firstname,$lastname,$useremail,$userpw, $isbusiness)
+=======
+    public function register($firstname,$lastname,$useremail,$userpw,$acctype)
+>>>>>>> origin/master
     {
        try
        {
            $new_userpw = password_hash($userpw, PASSWORD_DEFAULT);
 
+<<<<<<< HEAD
            $stmt = $this->db->prepare("INSERT INTO users(userpw, firstname, lastname, useremail, isbusiness) VALUES (:userpw, :firstname, :lastname, :useremail, :isbusiness)");
+=======
+           $stmt = $this->db->prepare("INSERT INTO users(userpw, firstname, lastname, useremail, acctype) VALUES (:userpw, :firstname, :lastname, :useremail, :acctype)");
+>>>>>>> origin/master
 
            $stmt->bindparam(":firstname", $firstname);
            $stmt->bindparam(":lastname", $lastname);
            $stmt->bindparam(":useremail", $useremail);
            $stmt->bindparam(":userpw", $new_userpw);
+<<<<<<< HEAD
            $stmt->bindparam(":isbusiness", $isbusiness);
+=======
+           $stmt->bindparam(":acctype", $acctype);
+>>>>>>> origin/master
            $stmt->execute();
 
            return $stmt;
