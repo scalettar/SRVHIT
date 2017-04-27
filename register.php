@@ -26,7 +26,7 @@ if(isset($_POST['btn-register'])){
         $error[] = "email already in use";
       }
       elseif ($userpw!=$userpwcheck) {
-        $error[] = "passwords do not match";
+        $error[] = "Passwords do not match";
       }
       else{
         if($user->register($firstname,$lastname,$useremail,$userpw, $isbusiness)){
@@ -115,8 +115,9 @@ if(isset($_POST['btn-register'])){
             foreach($error as $error)
             {
 ?>
-              <div class="alert alert-danger">
-                <i class="glyphicon glyphicon-warning-sign"></i> &nbsp; <?php echo $error; ?>
+              <div class="alert alert-danger" style=" background-color:#FF0000; font-family: verdana; color:#FFFFFF; text-align:center;">
+                <i class="glyphicon glyphicon-warning-sign"></i> &nbsp;
+                <?php echo $error; ?>
               </div>
 <?php
             }
@@ -138,9 +139,6 @@ if(isset($_POST['btn-register'])){
             <input type="text" name="zip" placeholder="Zip Code" required>
             <input type="password" name="userpw" placeholder="Password" required>
             <input type="password" name="userpwcheck" placeholder="Confirm Password" required>
-            This account will belong to a business
-            <input type="hidden" name="isbusiness" value="0">
-            <input type="checkbox" name="isbusiness" value="1">
             <input type="submit" name="btn-register" value="Register" class="button">
           </form>
 
