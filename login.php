@@ -90,6 +90,13 @@ if(isset($_POST['btn-login'])){
         <div class="form columns">
           <h2>Log In</h2>
 
+<?php
+            if(isset($_GET['registered']) && $_GET['registered']=="true"){
+?>
+              <div style=" background-color:#FF0000; font-family: verdana; color:#FFFFFF; text-align:center;"> Registration successful.</div>
+<?php
+            }
+?>
           <form action = "login.php" method = "post">
             <input type="email" name="useremail" placeholder="Enter your email" required>
             <input type="password" name="userpw" placeholder="Enter your password" required>
@@ -97,6 +104,7 @@ if(isset($_POST['btn-login'])){
           </form>
 
           <a href="register.php" class="link">New User? Register</a>
+          <a href="forgot-password.php" class="link">Forgot Password?</a>
         </div>
         <!-- end: Login form -->
 

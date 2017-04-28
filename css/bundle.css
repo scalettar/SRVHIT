@@ -183,7 +183,7 @@ select { -webkit-appearance: none; -moz-appearance: none; text-indent: 1px; text
 
 select::-ms-expand { display: none; }
 
-label { color: #00573b; display: block; margin-bottom: 5px; }
+label { color: #564e46; display: block; margin-bottom: 5px; }
 
 select { background: #e6e2d0; border: none; border-radius: 0; height: 48px; width: 100%; margin-bottom: 5px; padding: 0 20px; }
 

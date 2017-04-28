@@ -23,14 +23,14 @@ if(isset($_POST['btn-register'])){
       $row=$stmt->fetch(PDO::FETCH_ASSOC);
 
       if($row['useremail']==$useremail){
-        $error[] = "email already in use";
+        $error[] = "Email already in use.";
       }
       elseif ($userpw!=$userpwcheck) {
-        $error[] = "Passwords do not match";
+        $error[] = "Passwords do not match.";
       }
       else{
         if($user->register($firstname,$lastname,$useremail,$userpw, $isbusiness)){
-          $user->redirect('login.php'); //probably should tell the user they are registered first
+          $user->redirect('login.php?registered=true'); //probably should tell the user they are registered first
         }
       }
     //}
@@ -116,23 +116,13 @@ if(isset($_POST['btn-register'])){
             foreach($error as $error)
             {
 ?>
-              <div class="alert alert-danger" style=" background-color:#FF0000; font-family: verdana; color:#FFFFFF; text-align:center;">
-                <i class="glyphicon glyphicon-warning-sign"></i> &nbsp;
+              <div style=" background-color:#FF0000; font-family: verdana; color:#FFFFFF; text-align:center;">
                 <?php echo $error; ?>
               </div>
 <?php
             }
           }
-          else if(isset($_GET['joined']))
-          {
 ?>
-            <div class="alert alert-info">
-              <i class="glyphicon glyphicon-log-in"></i> &nbsp; Successfully registered <a href='index.php'>login</a> here
-            </div>
-<?php
-          }
-?>
-
           <form action="register.php" method="post">
             <input type="text" name="firstname" placeholder="First Name" required>
             <input type="text" name="lastname" placeholder="Last Name" required>
@@ -141,12 +131,15 @@ if(isset($_POST['btn-register'])){
             <input type="password" name="userpw" placeholder="Password" required>
             <input type="password" name="userpwcheck" placeholder="Confirm Password" required>
             <input type="hidden" name="isbusiness" value="0">
-            <input id="box" type="checkbox" name="isbusiness" value="1">
-            <label for="box">This account will belong to a business.<label>
+            <div style="text-align:left; color:#564e46; font-size:18px;">
+              <input id="box" type="checkbox" name="isbusiness" value="1">
+              <label for="box">Check this box if the account will belong to a business</label>
+            <div/>
+            <br>
             <input type="submit" name="btn-register" value="Register" class="button">
           </form>
 
-          <a href="forgot-password.php" class="link">Forgot Password?</a>
+          <a href="login.php" class="link">Already Registered? Log In</a>
         </div>
         <!-- end: register form -->
 

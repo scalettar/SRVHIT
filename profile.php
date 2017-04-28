@@ -5,10 +5,19 @@ if(!$user->is_loggedin()){
   $user->redirect('index.php');
 }
 
-$userid = $_SESSION['user_session'];
+// USE THIS TO LINK TO PROFILES <a href="profile.php?user=<?php echo $_SESSION['user_session'];
+
+// Current profile's info
+$userid = $_GET['user'];
 $stmt = $conn->prepare("SELECT * FROM users WHERE userid=:userid");
 $stmt->execute(array(":userid"=>$userid));
 $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
+
+// Logged in user's info
+$currentid = $_SESSION['user_session'];
+$stmt = $conn->prepare("SELECT * FROM users WHERE userid=:userid");
+$stmt->execute(array(":userid"=>$currentid));
+$currentRow=$stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +27,7 @@ $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>SRVHIT - Home</title>
+    <title>SRVHIT - Profile</title>
 
     <link href="css/bundle.css" rel="stylesheet">
 
@@ -59,7 +68,7 @@ $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
           <img class="mobile-only" src="images/icon_menu.svg" alt="">
 
           <ul class="desktop-menu desktop-only">
-            <li><a href="logout.php?logout=true">Logout (<?php print($userRow['useremail']);?>)</a></li>
+            <li><a href="logout.php?logout=true">Logout (<?php print($currentRow['useremail']);?>)</a></li>
           </ul>
         </nav>
         <!-- end: desktop nav -->
@@ -71,7 +80,7 @@ $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
 
           <!-- Start: mobile nav -->
           <ul class="mobile-menu">
-            <li><a href="logout.php?logout=true">Logout (<?php print($userRow['useremail']);?>)</a></li>
+            <li><a href="logout.php?logout=true">Logout (<?php print($currentRow['useremail']);?>)</a></li>
           </ul>
           <!-- end: mobile nav -->
 
