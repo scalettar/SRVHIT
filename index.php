@@ -75,7 +75,7 @@
           <h2>Students</h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et sagittis orci, eu lacinia massa. Proin in elementum quam. Mauris facilisis aliquam lorem ut luctus.</p>
 
-          <a href="login.php" class="button">Find Opportunity</a>
+          <a href="register.php" class="button">Find Opportunity</a>
         </div>
         <!--end: for students -->
 
@@ -94,7 +94,7 @@
           <h2>Businesses</h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et sagittis orci, eu lacinia massa. Proin in elementum quam. Mauris facilisis aliquam lorem ut luctus.</p>
 
-          <a href="login.php" class="button">Find Talent</a>
+          <a href="register.php" class="button">Find Talent</a>
         </div>
         <!-- end: for businesses -->
 

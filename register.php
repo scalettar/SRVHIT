@@ -40,6 +40,7 @@ if(isset($_POST['btn-register'])){
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -138,9 +139,9 @@ if(isset($_POST['btn-register'])){
             <input type="text" name="zip" placeholder="Zip Code" required>
             <input type="password" name="userpw" placeholder="Password" required>
             <input type="password" name="userpwcheck" placeholder="Confirm Password" required>
-            This account will belong to a business
             <input type="hidden" name="isbusiness" value="0">
-            <input type="checkbox" name="isbusiness" value="1">
+            <input id="box" type="checkbox" name="isbusiness" value="1">
+            <label for="box">This account will belong to a business.<label>
             <input type="submit" name="btn-register" value="Register" class="button">
           </form>
 

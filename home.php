@@ -59,7 +59,7 @@ $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
           <img class="mobile-only" src="images/icon_menu.svg" alt="">
 
           <ul class="desktop-menu desktop-only">
-            <li><a href="logout.php?logout=true">Logout</a></li>
+            <li><a href="logout.php?logout=true">Logout (<?php print($userRow['useremail']);?>)</a></li>
           </ul>
         </nav>
         <!-- end: desktop nav -->
@@ -104,9 +104,10 @@ $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
           <div class="profile-info">
 
             <div class="quick-links">
-              <img src="images/icon_edit.svg" alt="">
-              <img src="images/icon_mail.svg" alt="">
-              <img src="images/icon_doc.svg" alt="">
+              <!--<img src="images/icon_edit.svg" alt="">-->
+              <a href="index.php"><img src="images/icon_edit.svg" alt="">
+              <a href="message.php"><img src="images/icon_mail.svg" alt="">
+              <a href="upload.php"><img src="images/icon_doc.svg" alt="">
             </div>
 
             <div class="avatar">
