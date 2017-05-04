@@ -5,10 +5,10 @@ if(!$user->is_loggedin()){
   $user->redirect('index.php');
 }
 
-$userid = $_SESSION['user_session'];
+$currentid = $_SESSION['user_session'];
 $stmt = $conn->prepare("SELECT * FROM users WHERE userid=:userid");
-$stmt->execute(array(":userid"=>$userid));
-$userRow=$stmt->fetch(PDO::FETCH_ASSOC);
+$stmt->execute(array(":userid"=>$currentid));
+$currentRow=$stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -47,7 +47,7 @@ $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
           <!-- start: search desktop -->
           <div class="input-wrapper desktop-only">
             <input class="search" type="text" placeholder="Search">
-            <input class="search-button" type="button" value=" " onclick="location.href='results-opportunities.php';">
+            <input class="search-button" type="button" value=" " onclick="location.href='search.php';">
           </div>
           <!-- end: search desktop -->
 
@@ -59,7 +59,7 @@ $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
           <img class="mobile-only" src="images/icon_menu.svg" alt="">
 
           <ul class="desktop-menu desktop-only">
-            <li><a href="logout.php?logout=true">Logout (<?php print($userRow['useremail']);?>)</a></li>
+            <li><a href="logout.php?logout=true">Logout (<?php print($currentRow['useremail']);?>)</a></li>
           </ul>
         </nav>
         <!-- end: desktop nav -->
@@ -71,7 +71,7 @@ $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
 
           <!-- Start: mobile nav -->
           <ul class="mobile-menu">
-            <li><a href="logout.php?logout=true">Logout (<?php print($userRow['useremail']);?>)</a></li>
+            <li><a href="logout.php?logout=true">Logout (<?php print($currentRow['useremail']);?>)</a></li>
           </ul>
           <!-- end: mobile nav -->
 
@@ -84,7 +84,7 @@ $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
 
           <div class="input-wrapper mobile">
             <input class="search mobile-only" type="text" placeholder="Search">
-            <input class="search-button mobile-only" type="button" value=" " onclick="location.href='results-opportunities.php';">
+            <input class="search-button mobile-only" type="button" value=" " onclick="location.href='search.php';">
           </div>
 
         </div>
@@ -104,9 +104,7 @@ $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
           <div class="profile-info">
 
             <div class="quick-links">
-              <a href="index.php"><img src="images/icon_edit.svg" alt="">
-              <a href="message.php"><img src="images/icon_mail.svg" alt="">
-              <a href="upload.php"><img src="images/icon_doc.svg" alt="">
+              <a href="edit.php"><img src="images/icon_edit.svg" alt="">
             </div>
 
             <div class="avatar">
@@ -114,7 +112,7 @@ $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
             </div>
 
             <div class="bio">
-              <h4><?php print($userRow['firstname']); print " "; print($userRow['lastname']);?></h4>
+              <h4><?php print($currentRow['firstname']); print " "; print($currentRow['lastname']);?></h4>
               <p class="location"><span class="icon-location"><img src="images/icon_location.svg" alt=""></span>Sacramento, CA</p>
             </div>
 

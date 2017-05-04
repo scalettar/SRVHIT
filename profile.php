@@ -93,7 +93,7 @@ $currentRow=$stmt->fetch(PDO::FETCH_ASSOC);
 
           <div class="input-wrapper mobile">
             <input class="search mobile-only" type="text" placeholder="Search">
-            <input class="search-button mobile-only" type="button" value=" " onclick="location.href='results-opportunities.php';">
+            <input class="search-button mobile-only" type="button" value=" " onclick="location.href='search.php';">
           </div>
 
         </div>
@@ -113,9 +113,8 @@ $currentRow=$stmt->fetch(PDO::FETCH_ASSOC);
           <div class="profile-info">
 
             <div class="quick-links">
-              <a href="index.php"><img src="images/icon_edit.svg" alt="">
               <a href="message.php"><img src="images/icon_mail.svg" alt="">
-              <a href="upload.php"><img src="images/icon_doc.svg" alt="">
+              <a href="download.php"><img src="images/icon_doc.svg" alt="">
             </div>
 
             <div class="avatar">

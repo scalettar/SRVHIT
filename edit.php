@@ -1,11 +1,16 @@
 <?php
 require_once 'dbconnect.php';
 
-if($user->is_loggedin()!=""){
-  $user->redirect('home.php');
+if(!$user->is_loggedin()){
+  $user->redirect('index.php');
 }
 
-if(isset($_POST['btn-register'])){
+$currentid = $_SESSION['user_session'];
+$stmt = $conn->prepare("SELECT * FROM users WHERE userid=:userid");
+$stmt->execute(array(":userid"=>$currentid));
+$currentRow=$stmt->fetch(PDO::FETCH_ASSOC);
+
+if(isset($_POST['btn-edit'])){
     $useremail = !empty($_POST['useremail']) ? trim($_POST['useremail']) : null;
     $userpw = !empty($_POST['userpw']) ? trim($_POST['userpw']) : null;
     $firstname = !empty($_POST['firstname']) ? trim($_POST['firstname']) : null;
@@ -75,7 +80,7 @@ if(isset($_POST['btn-register'])){
             <li><a href="logged-in-talent.php">For Students</a></li>
             <li><a href="logged-in-business.php">For Businesses</a></li>
             <li><a href="">Contact Us</a></li>
-            <li><a href="login.php">Log In</a></li>
+            <li><a href="logout.php?logout=true">Logout (<?php print($currentRow['useremail']);?>)</a></li>
           </ul>
         </nav>
         <!-- start: desktop nav -->
@@ -90,7 +95,7 @@ if(isset($_POST['btn-register'])){
             <li><a href="logged-in-talent.php">For Students</a></li>
             <li><a href="logged-in-business.php">For Businesses</a></li>
             <li><a href="">Contact Us</a></li>
-            <li><a href="login.php">Log In</a></li>
+            <li><a href="logout.php?logout=true">Logout (<?php print($currentRow['useremail']);?>)</a></li>
           </ul>
 
         </div>
@@ -105,7 +110,7 @@ if(isset($_POST['btn-register'])){
 
         <!-- start: register form -->
         <div class="form columns">
-          <h2>Register</h2>
+          <h2>Edit Profile</h2>
 
 <?php
           if(isset($error)){
@@ -119,23 +124,12 @@ if(isset($_POST['btn-register'])){
             }
           }
 ?>
-          <form action="register.php" method="post">
-            <input type="text" name="firstname" placeholder="First Name" required>
-            <input type="text" name="lastname" placeholder="Last Name" required>
-            <input type="email" name="useremail" placeholder="Email Address" required>
-            <input type="text" name="zip" placeholder="Zip Code" required>
-            <input type="password" name="userpw" placeholder="Password" required>
-            <input type="password" name="userpwcheck" placeholder="Confirm Password" required>
-            <input type="hidden" name="isbusiness" value="0">
-            <div style="text-align:left; color:#564e46; font-size:18px;">
-              <input id="box" type="checkbox" name="isbusiness" value="1">
-              <label for="box">Check this box if the account will belong to a business</label>
-            <div/>
-            <br>
-            <input type="submit" name="btn-register" value="Register" class="button">
+          <form action="edit.php" method="post">
+            <input type="email" name="useremail" placeholder="New Email Address">
+            <input type="password" name="userpw" placeholder="New Password">
+            <input type="password" name="userpwcheck" placeholder="Confirm New Password">
+            <input type="submit" name="btn-register" value="Done" class="button">
           </form>
-
-          <a href="login.php" class="link">Already Registered? Log In</a>
         </div>
         <!-- end: register form -->
 
@@ -149,6 +143,12 @@ if(isset($_POST['btn-register'])){
     <!-- end: footer -->
 
     <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/scripts.js"></script>
+
+  </body>
+</html>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/scripts.js"></script>
 

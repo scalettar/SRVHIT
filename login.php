@@ -13,7 +13,7 @@ if(isset($_POST['btn-login'])){
     $user->redirect('home.php');
   }
   else{
-    $error = "Incorrect email/password combination";
+    $error = "Incorrect email/password combination.";
   }
 }
 ?>
@@ -94,6 +94,15 @@ if(isset($_POST['btn-login'])){
             if(isset($_GET['registered']) && $_GET['registered']=="true"){
 ?>
               <div style=" background-color:#FF0000; font-family: verdana; color:#FFFFFF; text-align:center;"> Registration successful.</div>
+<?php
+            }
+?>
+<?php
+            if(isset($error)){
+?>
+              <div style=" background-color:#FF0000; font-family: verdana; color:#FFFFFF; text-align:center;">
+                <?php echo $error; ?>
+              </div>
 <?php
             }
 ?>

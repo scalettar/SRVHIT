@@ -1,3 +1,16 @@
+<?php
+include_once 'dbconnect.php';
+
+if(!$user->is_loggedin()){
+  $user->redirect('index.php');
+}
+
+$currentid = $_SESSION['user_session'];
+$stmt = $conn->prepare("SELECT * FROM users WHERE userid=:userid");
+$stmt->execute(array(":userid"=>$currentid));
+$currentRow=$stmt->fetch(PDO::FETCH_ASSOC);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,7 +18,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>SRVHIT - Search opportunities</title>
+    <title>SRVHIT - Search</title>
 
     <link href="css/bundle.css" rel="stylesheet">
 
@@ -33,8 +46,8 @@
 
           <!-- start: search desktop -->
           <div class="input-wrapper desktop-only">
-            <input class="search" type="text" placeholder="Search for Opportunities">
-            <input class="search-button" type="button" value=" " onclick="location.href='results-opportunities.php';">
+            <input class="search" type="text" placeholder="Search for search">
+            <input class="search-button" type="button" value=" " onclick="location.href='search.php';">
           </div>
           <!-- end: search desktop -->
 
@@ -49,7 +62,7 @@
             <!-- <li><a href="logged-in-talent.php">For Students</a></li>
             <li><a href="logged-in-business.php">For Businesses</a></li>
             <li><a href="">Contact Us</a></li> -->
-            <li><a href="index.php">Viktor Kuko, Logout</a></li>
+            <li><a href="index.php">Logout (<?php print($currentRow['useremail']);?>)</a></li>
           </ul>
 
         </nav>
@@ -62,7 +75,7 @@
 
           <!-- Start: mobile nav -->
           <ul class="mobile-menu">
-            <li><a href="index.php">Viktor Kuko, Logout</a></li>
+            <li><a href="index.php">Logout (<?php print($currentRow['useremail']);?>)</a></li>
           </ul>
           <!-- end: mobile nav -->
 
@@ -74,8 +87,8 @@
         <div class="row">
 
           <div class="input-wrapper mobile">
-            <input class="search mobile-only" type="text" placeholder="Search for Opportunities">
-            <input class="search-button mobile-only" type="button" value=" " onclick="location.href='results-opportunities.php';">
+            <input class="search mobile-only" type="text" placeholder="Search">
+            <input class="search-button mobile-only" type="button" value=" " onclick="location.href='search.php';">
           </div>
 
         </div>
@@ -88,9 +101,9 @@
     <div id="logged-in" class="container">
       <div class="row">
 
-        <!-- start: opportunities results -->
-        <div id="opportunities" class="columns">
-          <h4>Opportunities</h4>
+        <!-- start: search results -->
+        <div id="search" class="columns">
+          <h4>Search</h4>
 
           <form>
 
@@ -113,8 +126,8 @@
                 <img src="images/chevron.svg" alt="" class="chevron">
                 <select>
                   <option value="all">All</option>
-                  <option value="new-york">New York</option>
-                  <option value="new-jersey">New Jersey</option>
+                  <option value="sacramento">Sacramento</option>
+                  <option value="davis">Davis</option>
                   <option value="roseville">Roseville</option>
                 </select>
               </div>
@@ -128,13 +141,12 @@
                   <option value="all">All</option>
                   <option value="full-time">Full time</option>
                   <option value="part-time">Part time</option>
-                  <option value="telecommute">Telecommute</option>
                 </select>
               </div>
             </fieldset>
           </form>
 
-          <ul id="opportunities-list" class="lists two-column">
+          <ul id="search-list" class="lists two-column">
 
             <li>
               <div class="avatar">
@@ -258,14 +270,14 @@
 
           </ul>
         </div>
-        <!-- end: opportunities results -->
+        <!-- end: search results -->
 
       </div>
     </div>
 
     <!-- start: footer -->
     <footer>
-      <p>© Copyright SrvHit 2017</p>
+      <p>© Copyright SRVHIT 2017</p>
     </footer>
     <!-- end: footer -->
 
