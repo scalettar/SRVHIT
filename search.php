@@ -108,6 +108,25 @@ $currentRow=$stmt->fetch(PDO::FETCH_ASSOC);
           <form>
 
             <fieldset>
+              <label>Skills</label>
+              <div class="custom-select">
+                <img src="images/chevron.svg" alt="" class="chevron">
+                <select id="tags">
+                  <option>None</option>;
+<?php
+                  $smt = $conn->prepare("SELECT tagname FROM tags");
+                  $smt->execute();
+                  $result = $smt->fetchAll();
+                  foreach($result as $row):
+?>
+                    <option><?=$row["tagname"]?></option>';
+<?php
+                  endforeach
+?>
+                </select>
+              </div>
+            </fieldset>
+            <!-- <fieldset>
               <label>Position</label>
               <div class="custom-select">
                 <img src="images/chevron.svg" alt="" class="chevron">
@@ -144,7 +163,7 @@ $currentRow=$stmt->fetch(PDO::FETCH_ASSOC);
                 </select>
               </div>
             </fieldset>
-          </form>
+          </form> -->
 
           <ul id="search-list" class="lists two-column">
 

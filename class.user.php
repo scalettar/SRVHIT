@@ -57,29 +57,35 @@ class USER
        }
    }
 
-   public function edit($userpw, $useremail){
+   public function edit($userpw, $useremail, $tagadd, $tagrem){
      try
      {
-         if($userpw!=null){
-           $new_userpw = password_hash($userpw, PASSWORD_DEFAULT);
-           $stmt = $this->db->prepare("UPDATE users SET userpw = :userpw WHERE userid = :userid");
-           $stmt->bindparam(":userid", $_SESSION['user_session']);
-           $stmt->bindparam(":userpw", $new_userpw);
-           $stmt->execute();
-         }
-         if($useremail!=null){
-           $stmt = $this->db->prepare("UPDATE users SET useremail = :useremail WHERE userid = :userid");
-           $stmt->bindparam(":userid", $_SESSION['user_session']);
-           $stmt->bindparam(":useremail", $useremail);
-           $stmt->execute();
-         }
-        //  if($tagname!='None'){
-        //    $stmt = $this->db->prepare("INSERT INTO ");
-        //    $stmt->bindparam(":userid", $_SESSION['user_session']);
-        //    $stmt->bindparam(":useremail", $useremail);
-        //    $stmt->execute();
-        //  }
-         return $stmt; // technically one edit could fail but in edit.php it will still display success if at least one stmt executed
+       if($userpw!=null){
+         $new_userpw = password_hash($userpw, PASSWORD_DEFAULT);
+         $stmtpw = $this->db->prepare("UPDATE users SET userpw = :userpw WHERE userid = :userid");
+         $stmtpw->bindparam(":userid", $_SESSION['user_session']);
+         $stmtpw->bindparam(":userpw", $new_userpw);
+         $stmtpw->execute();
+       }
+       if($useremail!=null){
+         $stmtem = $this->db->prepare("UPDATE users SET useremail = :useremail WHERE userid = :userid");
+         $stmtem->bindparam(":userid", $_SESSION['user_session']);
+         $stmtem->bindparam(":useremail", $useremail);
+         $stmtem->execute();
+       }
+       if($tagadd!='None'){
+         $stmttag = $this->db->prepare("INSERT INTO userstags (userid, tagid) SELECT :userid, tagid FROM tags WHERE tagname = :tagadd");
+         $stmttag->bindparam(":userid", $_SESSION['user_session']);
+         $stmttag->bindparam(":tagadd", $tagadd);
+         $stmttag->execute();
+       }
+       else if($tagrem!='None'){
+         $stmttag = $this->db->prepare("DELETE FROM userstags WHERE tagid IN (SELECT tagid FROM tags WHERE tagname = :tagrem) AND userid = :userid");
+         $stmttag->bindparam(":userid", $_SESSION['user_session']);
+         $stmttag->bindparam(":tagrem", $tagrem);
+         $stmttag->execute();
+       }
+       return true;
      }
      catch(PDOException $e)
      {

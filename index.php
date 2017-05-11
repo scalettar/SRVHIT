@@ -35,8 +35,6 @@
           <img class="mobile-only" src="images/icon_menu.svg" alt="">
 
           <ul class="desktop-menu desktop-only">
-            <li><a href="logged-in-talent.php">For Students</a></li>
-            <li><a href="logged-in-business.php">For Businesses</a></li>
             <li><a href="">Contact Us</a></li>
             <li><a href="login.php">Log In</a></li>
           </ul>
@@ -50,8 +48,6 @@
         <div class="row">
 
           <ul class="mobile-menu">
-            <li><a href="logged-in-talent.php">For Students</a></li>
-            <li><a href="logged-in-business.php">For Businesses</a></li>
             <li><a href="">Contact Us</a></li>
             <li><a href="login.php">Log In</a></li>
           </ul>
@@ -72,10 +68,10 @@
             <img src="images/icon_students.svg" alt="">
           </div>
 
-          <h2>Students</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et sagittis orci, eu lacinia massa. Proin in elementum quam. Mauris facilisis aliquam lorem ut luctus.</p>
+          <h2>Student</h2>
+          <p>Discover tech startups in the greater Sacramento metropolitan area looking to hire recent graduates.</p>
 
-          <a href="register.php" class="button">Find Opportunity</a>
+          <a href="register.php?user=student" class="button">Find Opportunity</a>
         </div>
         <!--end: for students -->
 
@@ -91,10 +87,10 @@
             <img src="images/icon_businesses.svg" alt="">
           </div>
 
-          <h2>Businesses</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et sagittis orci, eu lacinia massa. Proin in elementum quam. Mauris facilisis aliquam lorem ut luctus.</p>
+          <h2>Business</h2>
+          <p>Find recent university graduates for your tech startup in the greater Sacramento metropolitan area.</p>
 
-          <a href="register.php" class="button">Find Talent</a>
+          <a href="register.php?user=business" class="button">Find Talent</a>
         </div>
         <!-- end: for businesses -->
 

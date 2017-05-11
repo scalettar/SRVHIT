@@ -72,8 +72,6 @@ if(isset($_POST['btn-register'])){
           <img class="mobile-only" src="images/icon_menu.svg" alt="">
 
           <ul class="desktop-menu desktop-only">
-            <li><a href="logged-in-talent.php">For Students</a></li>
-            <li><a href="logged-in-business.php">For Businesses</a></li>
             <li><a href="">Contact Us</a></li>
             <li><a href="login.php">Log In</a></li>
           </ul>
@@ -87,8 +85,6 @@ if(isset($_POST['btn-register'])){
         <div class="row">
 
           <ul class="mobile-menu">
-            <li><a href="logged-in-talent.php">For Students</a></li>
-            <li><a href="logged-in-business.php">For Businesses</a></li>
             <li><a href="">Contact Us</a></li>
             <li><a href="login.php">Log In</a></li>
           </ul>

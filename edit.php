@@ -14,13 +14,14 @@ if(isset($_POST['btn-edit'])){
   $userpw = !empty($_POST['userpw']) ? trim($_POST['userpw']) : null;
   $userpwcheck = !empty($_POST['userpwcheck']) ? trim($_POST['userpwcheck']) : null;
   $useremail = !empty($_POST['useremail']) ? trim($_POST['useremail']) : null;
-//  $tagname = !empty($_POST['tagname']) ? trim($_POST['tagname']) : null;
+  $tagadd = !empty($_POST['tagadd']) ? trim($_POST['tagadd']) : null;
+  $tagrem = !empty($_POST['tagrem']) ? trim($_POST['tagrem']) : null;
 
   if($_POST['userpw'] != '' && $userpw!=$userpwcheck) {
       $error[] = "Passwords do not match.";
   }
   else{
-      if($user->edit($userpw, $useremail)){
+      if($user->edit($userpw, $useremail, $tagadd, $tagrem)){
           $user->redirect('edit.php?edit=true');
       }
   }
@@ -120,15 +121,15 @@ if(isset($_POST['btn-edit'])){
               <label>Add Tag</label>
               <div class="custom-select">
                 <img src="images/chevron.svg" alt="" class="chevron">
-                <select id="tags" name="tags">
-                  <option name="tagname">None</option>;
+                <select id="tagadd" name="tagadd">
+                  <option>None</option>;
 <?php
-                  $smt = $conn->prepare("select tagname from tags");
+                  $smt = $conn->prepare("SELECT tagname FROM tags");
                   $smt->execute();
                   $result = $smt->fetchAll();
                   foreach($result as $row):
 ?>
-                    <option name="tagname"><?=$row["tagname"]?></option>';
+                    <option><?=$row["tagname"]?></option>';
 <?php
                   endforeach
 ?>
@@ -139,15 +140,16 @@ if(isset($_POST['btn-edit'])){
               <label>Remove Tag</label>
               <div class="custom-select">
                 <img src="images/chevron.svg" alt="" class="chevron">
-                <select id="tags" name="tags">
-                  <option name="tagname_rem">None</option>;
+                <select id="tagrem" name="tagrem">
+                  <option>None</option>;
 <?php
-                  $smt = $conn->prepare("select tagname from tags");
+                  $smt = $conn->prepare("SELECT t.tagname FROM tags t INNER JOIN userstags ut ON t.tagid = ut.tagid WHERE ut.userid = :userid");
+                  $smt->bindparam(":userid", $_SESSION['user_session']);
                   $smt->execute();
                   $result = $smt->fetchAll();
                   foreach($result as $row):
 ?>
-                    <option name="tagname_rem"><?=$row["tagname"]?></option>';
+                    <option><?=$row["tagname"]?></option>';
 <?php
                   endforeach
 ?>

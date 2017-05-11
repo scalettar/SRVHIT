@@ -120,12 +120,17 @@ $currentRow=$stmt->fetch(PDO::FETCH_ASSOC);
           <!-- start: profile info -->
 
           <ul class="hint">
-            <li>Database Management</li>
-            <li>Game Development</li>
-            <li>Javascript</li>
-            <li>Python</li>
-            <li>Ruby on Rails</li>
-            <li>PHP</li>
+            <?php
+                        $smt = $conn->prepare("SELECT t.tagname FROM tags t INNER JOIN userstags ut ON t.tagid = ut.tagid WHERE ut.userid = :userid");
+                        $smt->bindparam(":userid", $_SESSION['user_session']);
+                        $smt->execute();
+                        $result = $smt->fetchAll();
+                        foreach($result as $row):
+            ?>
+                          <li><?=$row["tagname"]?></li>
+            <?php
+                        endforeach
+            ?>
           </ul>
 
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pulvinar libero sit amet magna congue facilisis. Maecenas pellentesque risus nec dui volutpatLorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pulvinar libero sit amet magna congue facilisis. Maecenas pellentesque risus nec dui volutpatLorem ipsum dolor sit amet.</p>
