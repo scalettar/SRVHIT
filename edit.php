@@ -11,42 +11,30 @@ $stmt->execute(array(":userid"=>$currentid));
 $currentRow=$stmt->fetch(PDO::FETCH_ASSOC);
 
 if(isset($_POST['btn-edit'])){
-    $useremail = !empty($_POST['useremail']) ? trim($_POST['useremail']) : null;
-    $userpw = !empty($_POST['userpw']) ? trim($_POST['userpw']) : null;
-    $firstname = !empty($_POST['firstname']) ? trim($_POST['firstname']) : null;
-    $lastname = !empty($_POST['lastname']) ? trim($_POST['lastname']) : null;
-    $userpwcheck = !empty($_POST['userpwcheck']) ? trim($_POST['userpwcheck']) : null;
-    $isbusiness = $_POST['isbusiness'];
+  $userpw = !empty($_POST['userpw']) ? trim($_POST['userpw']) : null;
+  $userpwcheck = !empty($_POST['userpwcheck']) ? trim($_POST['userpwcheck']) : null;
+  $useremail = !empty($_POST['useremail']) ? trim($_POST['useremail']) : null;
+//  $tagname = !empty($_POST['tagname']) ? trim($_POST['tagname']) : null;
 
-    //try{
-      $stmt = $conn->prepare("SELECT useremail FROM users WHERE useremail=:useremail");
-      $stmt->execute(array(':useremail'=>$useremail));
-      $row=$stmt->fetch(PDO::FETCH_ASSOC);
-
-      if($row['useremail']==$useremail){
-        $error[] = "Email already in use.";
+  if($_POST['userpw'] != '' && $userpw!=$userpwcheck) {
+      $error[] = "Passwords do not match.";
+  }
+  else{
+      if($user->edit($userpw, $useremail)){
+          $user->redirect('edit.php?edit=true');
       }
-      elseif ($userpw!=$userpwcheck) {
-        $error[] = "Passwords do not match.";
-      }
-      else{
-        if($user->register($firstname,$lastname,$useremail,$userpw, $isbusiness)){
-          $user->redirect('login.php?registered=true'); //probably should tell the user they are registered first
-        }
-      }
-    //}
+  }
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>SRVHIT - Register</title>
+    <title>SRVHIT - Edit Profile</title>
 
     <link href="css/bundle.css" rel="stylesheet">
 
@@ -66,9 +54,12 @@ if(isset($_POST['btn-edit'])){
 
         <!-- start: brand -->
         <div id="brand" class="columns">
-          <a href="index.php">
-            <img src="images/srvhit_logo.png" alt="">
-          </a>
+          <div class="logo">
+            <a href="home.php">
+              <img src="images/srvhit_logo.png" alt="">
+            </a>
+            <span class="sep desktop-only"></span>
+          </div>
         </div>
         <!-- end: brand -->
 
@@ -77,38 +68,31 @@ if(isset($_POST['btn-edit'])){
           <img class="mobile-only" src="images/icon_menu.svg" alt="">
 
           <ul class="desktop-menu desktop-only">
-            <li><a href="logged-in-talent.php">For Students</a></li>
-            <li><a href="logged-in-business.php">For Businesses</a></li>
-            <li><a href="">Contact Us</a></li>
             <li><a href="logout.php?logout=true">Logout (<?php print($currentRow['useremail']);?>)</a></li>
           </ul>
         </nav>
-        <!-- start: desktop nav -->
+        <!-- end: desktop nav -->
 
       </div>
 
-      <!-- start: mobile nav -->
       <div class="container mobile-only">
         <div class="row">
 
+          <!-- Start: mobile nav -->
           <ul class="mobile-menu">
-            <li><a href="logged-in-talent.php">For Students</a></li>
-            <li><a href="logged-in-business.php">For Businesses</a></li>
-            <li><a href="">Contact Us</a></li>
             <li><a href="logout.php?logout=true">Logout (<?php print($currentRow['useremail']);?>)</a></li>
           </ul>
+          <!-- end: mobile nav -->
 
         </div>
       </div>
-      <!-- start: mobile nav -->
-
     </header>
     <!-- end: header -->
 
-    <div class="container">
+    <div id="logged-in" class="container">
       <div class="row">
 
-        <!-- start: register form -->
+        <!-- start: edit form -->
         <div class="form columns">
           <h2>Edit Profile</h2>
 
@@ -124,12 +108,58 @@ if(isset($_POST['btn-edit'])){
             }
           }
 ?>
+<?php
+            if(isset($_GET['edit']) && $_GET['edit']=="true"){
+?>
+              <div style=" background-color:#FF0000; font-family: verdana; color:#FFFFFF; text-align:center;">Update Successful.</div>
+<?php
+            }
+?>
           <form action="edit.php" method="post">
+            <fieldset>
+              <label>Add Tag</label>
+              <div class="custom-select">
+                <img src="images/chevron.svg" alt="" class="chevron">
+                <select id="tags" name="tags">
+                  <option name="tagname">None</option>;
+<?php
+                  $smt = $conn->prepare("select tagname from tags");
+                  $smt->execute();
+                  $result = $smt->fetchAll();
+                  foreach($result as $row):
+?>
+                    <option name="tagname"><?=$row["tagname"]?></option>';
+<?php
+                  endforeach
+?>
+                </select>
+              </div>
+            </fieldset>
+            <fieldset>
+              <label>Remove Tag</label>
+              <div class="custom-select">
+                <img src="images/chevron.svg" alt="" class="chevron">
+                <select id="tags" name="tags">
+                  <option name="tagname_rem">None</option>;
+<?php
+                  $smt = $conn->prepare("select tagname from tags");
+                  $smt->execute();
+                  $result = $smt->fetchAll();
+                  foreach($result as $row):
+?>
+                    <option name="tagname_rem"><?=$row["tagname"]?></option>';
+<?php
+                  endforeach
+?>
+                </select>
+              </div>
+            </fieldset>
             <input type="email" name="useremail" placeholder="New Email Address">
             <input type="password" name="userpw" placeholder="New Password">
             <input type="password" name="userpwcheck" placeholder="Confirm New Password">
-            <input type="submit" name="btn-register" value="Done" class="button">
+            <input type="submit" name="btn-edit" value="Update" class="button">
           </form>
+
         </div>
         <!-- end: register form -->
 

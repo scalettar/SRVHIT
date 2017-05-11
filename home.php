@@ -89,10 +89,10 @@ $currentRow=$stmt->fetch(PDO::FETCH_ASSOC);
 
         </div>
       </div>
-      <!-- start: search mobile -->
+      <!-- end: search mobile -->
 
     </header>
-    <!-- start: header -->
+    <!-- end: header -->
 
     <div id="logged-in" class="container">
       <div class="row">

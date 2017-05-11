@@ -26,7 +26,7 @@ if(isset($_POST['btn-register'])){
       }
       else{
         if($user->register($firstname,$lastname,$useremail,$userpw, $isbusiness)){
-          $user->redirect('login.php?registered=true'); //probably should tell the user they are registered first
+          $user->redirect('login.php?registered=true');
         }
       }
     //}

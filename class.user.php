@@ -57,6 +57,36 @@ class USER
        }
    }
 
+   public function edit($userpw, $useremail){
+     try
+     {
+         if($userpw!=null){
+           $new_userpw = password_hash($userpw, PASSWORD_DEFAULT);
+           $stmt = $this->db->prepare("UPDATE users SET userpw = :userpw WHERE userid = :userid");
+           $stmt->bindparam(":userid", $_SESSION['user_session']);
+           $stmt->bindparam(":userpw", $new_userpw);
+           $stmt->execute();
+         }
+         if($useremail!=null){
+           $stmt = $this->db->prepare("UPDATE users SET useremail = :useremail WHERE userid = :userid");
+           $stmt->bindparam(":userid", $_SESSION['user_session']);
+           $stmt->bindparam(":useremail", $useremail);
+           $stmt->execute();
+         }
+        //  if($tagname!='None'){
+        //    $stmt = $this->db->prepare("INSERT INTO ");
+        //    $stmt->bindparam(":userid", $_SESSION['user_session']);
+        //    $stmt->bindparam(":useremail", $useremail);
+        //    $stmt->execute();
+        //  }
+         return $stmt; // technically one edit could fail but in edit.php it will still display success if at least one stmt executed
+     }
+     catch(PDOException $e)
+     {
+         echo $e->getMessage();
+     }
+   }
+
    public function is_loggedin()
    {
       if(isset($_SESSION['user_session']))

@@ -93,7 +93,7 @@ if(isset($_POST['btn-login'])){
 <?php
             if(isset($_GET['registered']) && $_GET['registered']=="true"){
 ?>
-              <div style=" background-color:#FF0000; font-family: verdana; color:#FFFFFF; text-align:center;"> Registration successful.</div>
+              <div style=" background-color:#FF0000; font-family: verdana; color:#FFFFFF; text-align:center;">Registration successful.</div>
 <?php
             }
 ?>
