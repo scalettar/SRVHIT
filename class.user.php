@@ -57,7 +57,7 @@ class USER
        }
    }
 
-   public function edit($userpw, $useremail, $tagadd, $tagrem){
+   public function edit($userpw, $useremail, $tagadd, $tagrem, $userdesc, $userimage){
      try
      {
        if($userpw!=null){
@@ -85,6 +85,17 @@ class USER
          $stmttag->bindparam(":tagrem", $tagrem);
          $stmttag->execute();
        }
+
+       $stmtimg = $this->db->prepare("UPDATE users SET userimage = :userimage WHERE userid = :userid");
+       $stmtimg->bindparam(":userid", $_SESSION['user_session']);
+       $stmtimg->bindParam(':userimage',$userimage);
+       $stmtimg->execute();
+
+       $stmtdesc = $this->db->prepare("UPDATE users SET userdesc = :userdesc WHERE userid = :userid");
+       $stmtdesc->bindparam(":userid", $_SESSION['user_session']);
+       $stmtdesc->bindparam(":userdesc", $userdesc);
+       $stmtdesc->execute();
+
        return true;
      }
      catch(PDOException $e)

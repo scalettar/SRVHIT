@@ -16,12 +16,35 @@ if(isset($_POST['btn-edit'])){
   $useremail = !empty($_POST['useremail']) ? trim($_POST['useremail']) : null;
   $tagadd = !empty($_POST['tagadd']) ? trim($_POST['tagadd']) : null;
   $tagrem = !empty($_POST['tagrem']) ? trim($_POST['tagrem']) : null;
+  $userdesc = !empty($_POST['userdesc']) ? trim($_POST['userdesc']) : null;
+
+  // process image
+  $imgfile = $_FILES['userimage']['name'];
+  if(!empty($imgfile)){
+    $tmpdir = $_FILES['userimage']['tmp_name'];
+    $imgsize = $_FILES['userimage']['size'];
+    $uploaddir = "images/users/";
+    $imgext = strtolower(pathinfo($imgfile,PATHINFO_EXTENSION));
+    $validext = array('jpeg', 'jpg', 'png', 'gif');
+    $userimage = rand(1000,1000000).".".$imgext;
+    if(in_array($imgext, $validext)){
+      if($imgsize < 5000000){
+        move_uploaded_file($tmpdir,$uploaddir.$userimage);
+      }
+      else{
+        $error[] = "Image size too large.";
+      }
+    }
+    else{
+      $error[] = "Image must be a JPG, JPEG, PNG, or GIF.";
+    }
+  }
 
   if($_POST['userpw'] != '' && $userpw!=$userpwcheck) {
       $error[] = "Passwords do not match.";
   }
-  else{
-      if($user->edit($userpw, $useremail, $tagadd, $tagrem)){
+  else if(!isset($error)){
+      if($user->edit($userpw, $useremail, $tagadd, $tagrem, $userdesc, $userimage)){
           $user->redirect('edit.php?edit=true');
       }
   }
@@ -94,7 +117,7 @@ if(isset($_POST['btn-edit'])){
       <div class="row">
 
         <!-- start: edit form -->
-        <div class="form columns">
+        <div class="edit columns">
           <h2>Edit Profile</h2>
 
 <?php
@@ -116,9 +139,9 @@ if(isset($_POST['btn-edit'])){
 <?php
             }
 ?>
-          <form action="edit.php" method="post">
+          <form action="edit.php" method="post" enctype = "multipart/form-data">
             <fieldset>
-              <label>Add Tag</label>
+              <label>Add Skill</label>
               <div class="custom-select">
                 <img src="images/chevron.svg" alt="" class="chevron">
                 <select id="tagadd" name="tagadd">
@@ -135,9 +158,9 @@ if(isset($_POST['btn-edit'])){
 ?>
                 </select>
               </div>
-            </fieldset>
+            </fieldset><br>
             <fieldset>
-              <label>Remove Tag</label>
+              <label>Remove Skill</label>
               <div class="custom-select">
                 <img src="images/chevron.svg" alt="" class="chevron">
                 <select id="tagrem" name="tagrem">
@@ -155,10 +178,30 @@ if(isset($_POST['btn-edit'])){
 ?>
                 </select>
               </div>
-            </fieldset>
-            <input type="email" name="useremail" placeholder="New Email Address">
-            <input type="password" name="userpw" placeholder="New Password">
-            <input type="password" name="userpwcheck" placeholder="Confirm New Password">
+            </fieldset><br>
+            <p align="left">Profile Description</p>
+            <textarea name="userdesc" cols="40" rows="10" placeholder=""><?=$currentRow["userdesc"]?></textarea><br>
+            <p align="left">New Email</p>
+            <input type="email" name="useremail"><br>
+            <p align="left">New Password</p>
+            <input type="password" name="userpw"><br>
+            <p align="left">Confirm Password</p>
+            <input type="password" name="userpwcheck"><br>
+            <p align="left">Profile Picture</p>
+            <div class="file-input-wrapper">
+              <button class="btn-file-input">Upload</button>
+              <input type="file" name="userimage" id="image" value="" />
+            </div>
+            <span id="img_text" style="float: right;
+            margin-right: -80px;
+            margin-top: -14px;"></span>
+            <script>
+                (function($){
+                    $('input[type="file"]').bind('change',function(){
+                        $("#img_text").html($('input[type="file"]').val());
+                    });
+                })(jQuery)
+            </script>
             <input type="submit" name="btn-edit" value="Update" class="button">
           </form>
 

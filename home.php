@@ -108,7 +108,7 @@ $currentRow=$stmt->fetch(PDO::FETCH_ASSOC);
             </div>
 
             <div class="avatar">
-              <img src="images/avatar.png" alt="">
+              <img src="images/users/<?php echo $currentRow['userimage'];?>" alt="" width=120px height=120px>
             </div>
 
             <div class="bio">
@@ -133,7 +133,7 @@ $currentRow=$stmt->fetch(PDO::FETCH_ASSOC);
 ?>
           </ul>
 
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pulvinar libero sit amet magna congue facilisis. Maecenas pellentesque risus nec dui volutpatLorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pulvinar libero sit amet magna congue facilisis. Maecenas pellentesque risus nec dui volutpatLorem ipsum dolor sit amet.</p>
+          <p><?=$currentRow['userdesc']?></p>
 
         </div>
         <!-- end - student profile -->
