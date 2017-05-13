@@ -167,7 +167,7 @@ td, th { padding: 0; }
 
 .input-wrapper.mobile { display: inline-block; background: #fff; line-height: auto; border-radius: 8px; width: 100%; position: relative; }
 
-input.search { background: url("images/icon_search.svg"); border-radius: 8px; display: inline-block; border: 0; padding: 20px; color: #c5b57e; }
+input.search { background: url("images/icon_search.svg"); border-radius: 8px; display: inline-block; border: 0; padding: 20px; color: #002e21; }
 
 input.search-button { background: url("../images/icon_search.svg") #fff no-repeat center 20px; border-radius: 8px; display: inline-block; border: 0; padding: 20px; position: absolute; top: 0; right: 0; }
 
@@ -210,6 +210,8 @@ a { text-decoration: none; }
 a.link { color: #564e46; display: block; font-size: 14px; text-decoration: underline; font-weight: 700; margin: 20px 0; }
 
 .button { background: #ccb773; color: #ffffff; display: inline-block; font-size: 14px; font-weight: 700; height: 55px; line-height: 55px; margin-top: 40px; width: 200px; border-radius: 100px; }
+
+.hint-button {background: #d4ceb4 !important; color: #564e46; float: center; display: inline-block; margin: 2px; padding: 5px;}
 
 body { background: #e6e2d0; font-family: 'Lato', sans-serif; }
 

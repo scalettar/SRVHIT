@@ -45,10 +45,10 @@ $currentRow=$stmt->fetch(PDO::FETCH_ASSOC);
           </div>
 
           <!-- start: search desktop -->
-          <div class="input-wrapper desktop-only">
-            <input class="search" type="text" placeholder="Search">
+         <div class="input-wrapper desktop-only">
+            <input class="search" type="button" value="Search" onclick="location.href='search.php';">
             <input class="search-button" type="button" value=" " onclick="location.href='search.php';">
-          </div>
+         </div>
           <!-- end: search desktop -->
 
         </div>
@@ -83,7 +83,7 @@ $currentRow=$stmt->fetch(PDO::FETCH_ASSOC);
         <div class="row">
 
           <div class="input-wrapper mobile">
-            <input class="search mobile-only" type="text" placeholder="Search">
+            <input class="search" type="button" value="Search" onclick="location.href='search.php';">
             <input class="search-button mobile-only" type="button" value=" " onclick="location.href='search.php';">
           </div>
 
@@ -104,7 +104,7 @@ $currentRow=$stmt->fetch(PDO::FETCH_ASSOC);
           <div class="profile-info">
 
             <div class="quick-links">
-              <a href="edit.php"><img src="images/icon_edit.svg" alt="">
+              <a href="edit.php"><img src="images/icon_edit.svg" alt=""></a>
             </div>
 
             <div class="avatar">
@@ -120,17 +120,17 @@ $currentRow=$stmt->fetch(PDO::FETCH_ASSOC);
           <!-- start: profile info -->
 
           <ul class="hint">
-            <?php
-                        $smt = $conn->prepare("SELECT t.tagname FROM tags t INNER JOIN userstags ut ON t.tagid = ut.tagid WHERE ut.userid = :userid");
-                        $smt->bindparam(":userid", $_SESSION['user_session']);
-                        $smt->execute();
-                        $result = $smt->fetchAll();
-                        foreach($result as $row):
-            ?>
-                          <li><?=$row["tagname"]?></li>
-            <?php
-                        endforeach
-            ?>
+<?php
+            $smt = $conn->prepare("SELECT t.tagname FROM tags t INNER JOIN userstags ut ON t.tagid = ut.tagid WHERE ut.userid = :userid");
+            $smt->bindparam(":userid", $_SESSION['user_session']);
+            $smt->execute();
+            $result = $smt->fetchAll();
+            foreach($result as $row):
+?>
+              <li><?=$row["tagname"]?></li>
+<?php
+            endforeach
+?>
           </ul>
 
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pulvinar libero sit amet magna congue facilisis. Maecenas pellentesque risus nec dui volutpatLorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pulvinar libero sit amet magna congue facilisis. Maecenas pellentesque risus nec dui volutpatLorem ipsum dolor sit amet.</p>

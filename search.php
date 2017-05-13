@@ -9,6 +9,10 @@ $currentid = $_SESSION['user_session'];
 $stmt = $conn->prepare("SELECT * FROM users WHERE userid=:userid");
 $stmt->execute(array(":userid"=>$currentid));
 $currentRow=$stmt->fetch(PDO::FETCH_ASSOC);
+
+if(isset($_POST['btn-search'])){
+  $searchtag = $_POST['searchtag'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -38,19 +42,11 @@ $currentRow=$stmt->fetch(PDO::FETCH_ASSOC);
         <!-- start: brand -->
         <div id="brand" class="columns">
           <div class="logo">
-            <a href="index.php">
+            <a href="home.php">
               <img src="images/srvhit_logo.png" alt="">
             </a>
             <span class="sep desktop-only"></span>
           </div>
-
-          <!-- start: search desktop -->
-          <div class="input-wrapper desktop-only">
-            <input class="search" type="text" placeholder="Search for search">
-            <input class="search-button" type="button" value=" " onclick="location.href='search.php';">
-          </div>
-          <!-- end: search desktop -->
-
         </div>
         <!-- end: brand -->
 
@@ -81,20 +77,6 @@ $currentRow=$stmt->fetch(PDO::FETCH_ASSOC);
 
         </div>
       </div>
-
-      <!-- start: search mobile -->
-      <div class="container search mobile-only">
-        <div class="row">
-
-          <div class="input-wrapper mobile">
-            <input class="search mobile-only" type="text" placeholder="Search">
-            <input class="search-button mobile-only" type="button" value=" " onclick="location.href='search.php';">
-          </div>
-
-        </div>
-      </div>
-      <!-- end: search mobile -->
-
     </header>
     <!-- end: header -->
 
@@ -105,13 +87,12 @@ $currentRow=$stmt->fetch(PDO::FETCH_ASSOC);
         <div id="search" class="columns">
           <h4>Search</h4>
 
-          <form>
-
+          <form action="search.php" method="post">
             <fieldset>
               <label>Skills</label>
               <div class="custom-select">
                 <img src="images/chevron.svg" alt="" class="chevron">
-                <select id="tags">
+                <select id="searchtag" name="searchtag">
                   <option>None</option>;
 <?php
                   $smt = $conn->prepare("SELECT tagname FROM tags");
@@ -126,6 +107,7 @@ $currentRow=$stmt->fetch(PDO::FETCH_ASSOC);
                 </select>
               </div>
             </fieldset>
+            <input type="submit" name="btn-search" value="Submit" class="hint-button">
             <!-- <fieldset>
               <label>Position</label>
               <div class="custom-select">
@@ -162,131 +144,43 @@ $currentRow=$stmt->fetch(PDO::FETCH_ASSOC);
                   <option value="part-time">Part time</option>
                 </select>
               </div>
-            </fieldset>
-          </form> -->
+            </fieldset> -->
+          </form>
 
           <ul id="search-list" class="lists two-column">
-
-            <li>
-              <div class="avatar">
-                <img src="images/icon_businesses.svg" alt="">
-              </div>
-              <div class="bio">
-                <span class="favorited">
-                  <img src="images/favorited.svg" alt="">
-                  <img src="images/favorite.svg" alt="" style="display: none;">
-                </span>
-                <h3>Business Name</h3>
-                <p class="location"><span class="icon-location"><img src="images/icon_location.svg" alt=""></span>Sacramento, CA</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </div>
-            </li>
-
-            <li>
-              <div class="avatar">
-                <img src="images/icon_businesses.svg" alt="">
-              </div>
-              <div class="bio">
-                <span class="favorited">
-                  <img src="images/favorited.svg" alt="">
-                  <img src="images/favorite.svg" alt="" style="display: none;">
-                </span>
-                <h3>Business Name</h3>
-                <p class="location"><span class="icon-location"><img src="images/icon_location.svg" alt=""></span>Sacramento, CA</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </div>
-            </li>
-
-            <li>
-              <div class="avatar">
-                <img src="images/icon_businesses.svg" alt="">
-              </div>
-              <div class="bio">
-                <span class="favorited">
-                  <img src="images/favorited.svg" alt="">
-                  <img src="images/favorite.svg" alt="" style="display: none;">
-                </span>
-                <h3>Business Name</h3>
-                <p class="location"><span class="icon-location"><img src="images/icon_location.svg" alt=""></span>Sacramento, CA</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </div>
-            </li>
-
-            <li>
-              <div class="avatar">
-                <img src="images/icon_businesses.svg" alt="">
-              </div>
-              <div class="bio">
-                <span class="favorited">
-                  <img src="images/favorited.svg" alt="">
-                  <img src="images/favorite.svg" alt="" style="display: none;">
-                </span>
-                <h3>Business Name</h3>
-                <p class="location"><span class="icon-location"><img src="images/icon_location.svg" alt=""></span>Sacramento, CA</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </div>
-            </li>
-
-            <li>
-              <div class="avatar">
-                <img src="images/icon_businesses.svg" alt="">
-              </div>
-              <div class="bio">
-                <span class="favorited">
-                  <img src="images/favorited.svg" alt="">
-                  <img src="images/favorite.svg" alt="" style="display: none;">
-                </span>
-                <h3>Business Name</h3>
-                <p class="location"><span class="icon-location"><img src="images/icon_location.svg" alt=""></span>Sacramento, CA</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </div>
-            </li>
-
-            <li>
-              <div class="avatar">
-                <img src="images/icon_businesses.svg" alt="">
-              </div>
-              <div class="bio">
-                <span class="favorited">
-                  <img src="images/favorited.svg" alt="">
-                  <img src="images/favorite.svg" alt="" style="display: none;">
-                </span>
-                <h3>Business Name</h3>
-                <p class="location"><span class="icon-location"><img src="images/icon_location.svg" alt=""></span>Sacramento, CA</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </div>
-            </li>
-
-            <li>
-              <div class="avatar">
-                <img src="images/icon_businesses.svg" alt="">
-              </div>
-              <div class="bio">
-                <span class="favorited">
-                  <img src="images/favorited.svg" alt="">
-                  <img src="images/favorite.svg" alt="" style="display: none;">
-                </span>
-                <h3>Business Name</h3>
-                <p class="location"><span class="icon-location"><img src="images/icon_location.svg" alt=""></span>Sacramento, CA</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </div>
-            </li>
-
-            <li>
-              <div class="avatar">
-                <img src="images/icon_businesses.svg" alt="">
-              </div>
-              <div class="bio">
-                <span class="favorited">
-                  <img src="images/favorited.svg" alt="">
-                  <img src="images/favorite.svg" alt="" style="display: none;">
-                </span>
-                <h3>Business Name</h3>
-                <p class="location"><span class="icon-location"><img src="images/icon_location.svg" alt=""></span>Sacramento, CA</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </div>
-            </li>
-
+<?php
+              $smt = $conn->prepare("SELECT u.* FROM users u INNER JOIN userstags ut ON u.userid = ut.userid WHERE ut.tagid IN (SELECT tagid FROM tags WHERE tagname = :searchtag)");
+              $smt->bindparam(":searchtag", $searchtag);
+              $smt->execute();
+              $result = $smt->fetchAll();
+              foreach($result as $row):
+?>
+                <li>
+                  <div class = "avatar">
+                    <img src="images/icon_businesses.svg" alt="">
+                  </div>
+                  <div class="bio">
+                    <h3><?php print($row['firstname']); print " "; print($row['lastname']);?></h3>
+                      <!-- <p class="location"><span class="icon-location"><img src="images/icon_location.svg" alt=""></span><?=$row["useremail"]?></p> -->
+                      <a href="profile.php?user=<?=$row["userid"]?>" class = "hint-button">View Profile</a>
+                      <!-- <ul class="hint">
+<?php
+                      $smt = $conn->prepare("SELECT t.tagname FROM tags t INNER JOIN userstags ut ON t.tagid = ut.tagid WHERE ut.userid = :userid");
+                      $smt->bindparam(":userid", $row['userid']);
+                      $smt->execute();
+                      $result = $smt->fetchAll();
+                      foreach($result as $rowtags):
+?>
+                        <li><?=$rowtags["tagname"]?></li>
+<?php
+                      endforeach
+?>
+                    </ul> -->
+                  </div>
+                </li>
+<?php
+              endforeach
+?>
           </ul>
         </div>
         <!-- end: search results -->
