@@ -20,7 +20,7 @@ if(isset($_POST['btn-edit'])){
 
   // process image
   $imgfile = $_FILES['userimage']['name'];
-  if(!empty($imgfile)){
+  if($imgfile){
     $tmpdir = $_FILES['userimage']['tmp_name'];
     $imgsize = $_FILES['userimage']['size'];
     $uploaddir = "images/users/";
@@ -38,6 +38,9 @@ if(isset($_POST['btn-edit'])){
     else{
       $error[] = "Image must be a JPG, JPEG, PNG, or GIF.";
     }
+  }
+  else{
+    $userimage = $currentRow['userimage'];
   }
 
   if($_POST['userpw'] != '' && $userpw!=$userpwcheck) {

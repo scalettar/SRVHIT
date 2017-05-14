@@ -113,12 +113,12 @@ $currentRow=$stmt->fetch(PDO::FETCH_ASSOC);
           <div class="profile-info">
 
             <div class="quick-links">
-              <a href="message.php"><img src="images/icon_mail.svg" alt=""></a>
+              <a href="message.php?user=<?=$userRow['userid']?>"><img src="images/icon_mail.svg" alt=""></a>
               <a href="download.php"><img src="images/icon_doc.svg" alt=""></a>
             </div>
 
             <div class="avatar">
-              <img src="images/avatar.png" alt="">
+              <img src="images/users/<?php echo $userRow['userimage'];?>" alt="" width=120px height=120px>
             </div>
 
             <div class="bio">
@@ -143,7 +143,7 @@ $currentRow=$stmt->fetch(PDO::FETCH_ASSOC);
             ?>
           </ul>
 
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pulvinar libero sit amet magna congue facilisis. Maecenas pellentesque risus nec dui volutpatLorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pulvinar libero sit amet magna congue facilisis. Maecenas pellentesque risus nec dui volutpatLorem ipsum dolor sit amet.</p>
+          <p><?=$userRow['userdesc']?></p>
 
         </div>
         <!-- end - student profile -->

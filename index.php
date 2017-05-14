@@ -1,3 +1,11 @@
+<?php
+include_once 'dbconnect.php';
+
+if($user->is_loggedin()){
+  $user->redirect('home.php');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>

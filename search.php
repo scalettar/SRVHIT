@@ -55,9 +55,6 @@ if(isset($_POST['btn-search'])){
           <img class="mobile-only" src="images/icon_menu.svg" alt="">
 
           <ul class="desktop-menu desktop-only">
-            <!-- <li><a href="logged-in-talent.php">For Students</a></li>
-            <li><a href="logged-in-business.php">For Businesses</a></li>
-            <li><a href="">Contact Us</a></li> -->
             <li><a href="index.php">Logout (<?php print($currentRow['useremail']);?>)</a></li>
           </ul>
 
@@ -157,7 +154,7 @@ if(isset($_POST['btn-search'])){
 ?>
                 <li>
                   <div class = "avatar">
-                    <img src="images/icon_businesses.svg" alt="">
+                    <img src="images/users/<?php echo $row['userimage'];?>" alt="" width=120px height=120px >
                   </div>
                   <div class="bio">
                     <h3><?php print($row['firstname']); print " "; print($row['lastname']);?></h3>

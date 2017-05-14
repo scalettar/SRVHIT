@@ -142,7 +142,7 @@ $currentRow=$stmt->fetch(PDO::FETCH_ASSOC);
         <div id="student-favorites" class="columns">
           <h4>Favorites</h4>
 
-          <ul class="lists">
+          <ul class="lists fav-lists">
 
             <li>
               <div class="avatar">
