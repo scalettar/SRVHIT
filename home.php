@@ -146,61 +146,61 @@ $currentRow=$stmt->fetch(PDO::FETCH_ASSOC);
 
             <li>
               <div class="avatar">
-                <img src="images/icon_businesses.svg" alt="">
+                <img src="images/business_a.PNG" alt="">
               </div>
               <div class="bio">
                 <span class="favorited">
                   <img src="images/favorited.svg" alt="">
                   <img src="images/favorite.svg" alt="" style="display: none;">
                 </span>
-                <h3>Business Name</h3>
+                <h3>EaglEX</h3>
                 <p class="location"><span class="icon-location"><img src="images/icon_location.svg" alt=""></span>Sacramento, CA</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <p>An innovative stock trading platform.</p>
               </div>
             </li>
 
             <li>
               <div class="avatar">
-                <img src="images/icon_businesses.svg" alt="">
+                <img src="images/business_c.png" alt="">
               </div>
               <div class="bio">
                 <span class="favorited">
                   <img src="images/favorited.svg" alt="">
                   <img src="images/favorite.svg" alt="" style="display: none;">
                 </span>
-                <h3>Business Name</h3>
-                <p class="location"><span class="icon-location"><img src="images/icon_location.svg" alt=""></span>Sacramento, CA</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <h3>Zeuron</h3>
+                <p class="location"><span class="icon-location"><img src="images/icon_location.svg" alt=""></span>Elk Grove, CA</p>
+                <p>Social networking of the future.</p>
               </div>
             </li>
 
             <li>
               <div class="avatar">
-                <img src="images/icon_businesses.svg" alt="">
+                <img src="images/business_d.png" alt="">
               </div>
               <div class="bio">
                 <span class="favorited">
                   <img src="images/favorited.svg" alt="">
                   <img src="images/favorite.svg" alt="" style="display: none;">
                 </span>
-                <h3>Business Name</h3>
+                <h3>Polaris Financial</h3>
                 <p class="location"><span class="icon-location"><img src="images/icon_location.svg" alt=""></span>Sacramento, CA</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <p>Plan smart. Retire early. </p>
               </div>
             </li>
 
             <li>
               <div class="avatar">
-                <img src="images/icon_businesses.svg" alt="">
+                <img src="images/business_b.jpg" alt="">
               </div>
               <div class="bio">
                 <span class="favorited">
                   <img src="images/favorited.svg" alt="">
                   <img src="images/favorite.svg" alt="" style="display: none;">
                 </span>
-                <h3>Business Name</h3>
-                <p class="location"><span class="icon-location"><img src="images/icon_location.svg" alt=""></span>Sacramento, CA</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <h3>Galaxy Drones</h3>
+                <p class="location"><span class="icon-location"><img src="images/icon_location.svg" alt=""></span>Roseville, CA</p>
+                <p>Drones that save lives.</p>
               </div>
             </li>
 
