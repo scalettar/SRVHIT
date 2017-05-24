@@ -79,7 +79,7 @@ if($user->is_loggedin()){
           <h2>Student</h2>
           <p>Discover tech startups in the greater Sacramento metropolitan area looking to hire recent graduates.</p>
 
-          <a href="register.php?user=student" class="button">Find Opportunity</a>
+          <a href="register.php" class="button">Find Opportunity</a>
         </div>
         <!--end: for students -->
 
@@ -98,7 +98,7 @@ if($user->is_loggedin()){
           <h2>Business</h2>
           <p>Find recent university graduates for your tech startup in the greater Sacramento metropolitan area.</p>
 
-          <a href="register.php?user=business" class="button">Find Talent</a>
+          <a href="register-b.php" class="button">Find Talent</a>
         </div>
         <!-- end: for businesses -->
 

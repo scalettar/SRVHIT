@@ -98,17 +98,17 @@ input { line-height: normal; }
 /** It's recommended that you don't attempt to style these elements. Firefox's implementation doesn't respect box-sizing, padding, or width. 1. Address box sizing set to `content-box` in IE 8/9/10. 2. Remove excess padding in IE 8/9/10. */
 /* input[type="checkbox"], input[type="radio"] { box-sizing: border-box; padding: 0; } */
 /*** Custom checkbox, sorry, decided to style it anyway ***/
-input[type=checkbox] { display:none; } /* to hide the checkbox itself */
-input[type=checkbox] + label:before {
+/*input[type=checkbox] { display:none; } *//* to hide the checkbox itself */
+/*input[type=checkbox] + label:before {
   font-family: FontAwesome;
   display: inline-block;
-}
+}*/
 
-input[type=checkbox] + label:before { content: "\f096"; } /* unchecked icon */
-input[type=checkbox] + label:before { letter-spacing: 10px; } /* space between checkbox and label */
+/*input[type=checkbox] + label:before { content: "\f096"; } *//* unchecked icon */
+/*input[type=checkbox] + label:before { letter-spacing: 10px; }*/ /* space between checkbox and label */
 
-input[type=checkbox]:checked + label:before { content: "\f046"; } /* checked icon */
-input[type=checkbox]:checked + label:before { letter-spacing: 5px; } /* allow space for check mark */
+/*input[type=checkbox]:checked + label:before { content: "\f046"; } *//* checked icon */
+/*input[type=checkbox]:checked + label:before { letter-spacing: 5px; } *//* allow space for check mark */
 
 /** Fix the cursor style for Chrome's increment/decrement buttons. For certain `font-size` values of the `input`, it causes the cursor style of the decrement button to change from `default` to `text`. */
 input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button { height: auto; }

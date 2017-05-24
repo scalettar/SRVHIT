@@ -8,19 +8,44 @@ class USER
       $this->db = $conn;
     }
 
-    public function register($firstname,$lastname,$useremail,$userpw, $isbusiness)
+    public function register($firstname,$lastname,$useremail,$userpw)
     {
        try
        {
            $new_userpw = password_hash($userpw, PASSWORD_DEFAULT);
 
-           $stmt = $this->db->prepare("INSERT INTO users(userpw, firstname, lastname, useremail, isbusiness) VALUES (:userpw, :firstname, :lastname, :useremail, :isbusiness)");
+           $stmt = $this->db->prepare("INSERT INTO users(userpw, firstname, lastname, useremail) VALUES (:userpw, :firstname, :lastname, :useremail)");
 
            $stmt->bindparam(":firstname", $firstname);
            $stmt->bindparam(":lastname", $lastname);
            $stmt->bindparam(":useremail", $useremail);
            $stmt->bindparam(":userpw", $new_userpw);
-           $stmt->bindparam(":isbusiness", $isbusiness);
+           $stmt->execute();
+
+           return $stmt;
+       }
+       catch(PDOException $e)
+       {
+           echo $e->getMessage();
+       }
+    }
+
+    public function registerb($firstname,$useremail,$userpw,$phone,$street,$city,$zip)
+    {
+       try
+       {
+           $new_userpw = password_hash($userpw, PASSWORD_DEFAULT);
+
+           $stmt = $this->db->prepare("INSERT INTO users(userpw, firstname, useremail, phone, street, city, zip, isbusiness) VALUES (:userpw, :firstname, :useremail, :phone, :street, :city, :zip, :isbusiness)");
+
+           $stmt->bindparam(":firstname", $firstname);
+           $stmt->bindparam(":useremail", $useremail);
+           $stmt->bindparam(":userpw", $new_userpw);
+           $stmt->bindparam(":phone", $phone);
+           $stmt->bindparam(":street", $street);
+           $stmt->bindparam(":city", $city);
+           $stmt->bindparam(":zip", $zip);
+           $stmt->bindparam(":isbusiness, 1");
            $stmt->execute();
 
            return $stmt;

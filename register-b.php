@@ -9,8 +9,11 @@ if(isset($_POST['btn-register'])){
     $useremail = !empty($_POST['useremail']) ? trim($_POST['useremail']) : null;
     $userpw = !empty($_POST['userpw']) ? trim($_POST['userpw']) : null;
     $firstname = !empty($_POST['firstname']) ? trim($_POST['firstname']) : null;
-    $lastname = !empty($_POST['lastname']) ? trim($_POST['lastname']) : null;
     $userpwcheck = !empty($_POST['userpwcheck']) ? trim($_POST['userpwcheck']) : null;
+    $phone = !empty($_POST['phone']) ? trim($_POST['phone']) : null;
+    $street = !empty($_POST['street']) ? trim($_POST['street']) : null;
+    $city = !empty($_POST['city']) ? trim($_POST['city']) : null;
+    $zip = !empty($_POST['zip']) ? trim($_POST['zip']) : null;
 
     //try{
       $stmt = $conn->prepare("SELECT useremail FROM users WHERE useremail=:useremail");
@@ -20,11 +23,14 @@ if(isset($_POST['btn-register'])){
       if($row['useremail']==$useremail){
         $error[] = "Email already in use.";
       }
+      else if($city=='City'){
+        $error[] = "You must select a city.";
+      }
       elseif ($userpw!=$userpwcheck) {
         $error[] = "Passwords do not match.";
       }
       else{
-        if($user->register($firstname,$lastname,$useremail,$userpw)){
+        if($user->registerb($firstname,$useremail,$userpw,$phone,$street,$city,$zip)){
           $user->redirect('login.php?registered=true');
         }
       }
@@ -115,18 +121,22 @@ if(isset($_POST['btn-register'])){
           }
 ?>
           <form action="register.php" method="post">
-            <input type="text" name="firstname" value="<?php echo isset($_POST['firstname']) ? $_POST['firstname'] : ""?>" placeholder="First Name" required>
-            <input type="text" name="lastname" value="<?php echo isset($_POST['lastname']) ? $_POST['lastname'] : ""?>" placeholder="Last Name" required>
+            <input type="text" name="firstname" value="<?php echo isset($_POST['firstname']) ? $_POST['firstname'] : ""?>" placeholder="Business Name" required>
             <input type="email" name="useremail" value="<?php echo isset($_POST['useremail']) ? $_POST['useremail'] : ""?>" placeholder="Email Address" required>
+            <input type="text" name="street" value="<?php echo isset($_POST['street']) ? $_POST['street'] : ""?>" placeholder="Street Address" required>
+            <div class="custom-select">
+              <img src="images/chevron.svg" alt="" class="chevron">
+              <select name="city" style="background:#ffffff; margin-bottom:20px;">
+                <option>City</option>;
+                <option>Sacramento, CA</option>;
+                <option>Elk Grove, CA</option>;
+                <option>Roseville, CA</option>;
+              </select>
+            </div>
             <input type="text" name="zip" value="<?php echo isset($_POST['zip']) ? $_POST['zip'] : ""?>" placeholder="Zip Code" required>
+            <input type="tel" name="phone" value="<?php echo isset($_POST['phone']) ? $_POST['phone'] : ""?>" placeholder="Phone #" required>
             <input type="password" name="userpw" placeholder="Password" required>
             <input type="password" name="userpwcheck" placeholder="Confirm Password" required>
-            <!-- <input type="hidden" name="isbusiness" value="0">
-            <div style="text-align:left; color:#564e46; font-size:18px;">
-              <input id="box" type="checkbox" name="isbusiness" value="1">
-              <label for="box">Check this box if the account will belong to a business</label>
-            <div/>
-            <br> -->
             <input type="submit" name="btn-register" value="Register" class="button">
           </form>
 

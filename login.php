@@ -108,8 +108,9 @@ if(isset($_POST['btn-login'])){
             <input type="submit" name="btn-login" value="Login" class="button">
           </form>
 
-          <a href="register.php" class="link">New User? Register</a>
-          <a href="forgot-password.php" class="link">Forgot Password?</a>
+          <a href="register.php" class="link">New Student? Register</a>
+          <a href="register-b.php" class="link">New Business? Register</a>
+          <a href="forgotpassword.php" class="link">Forgot Password?</a>
         </div>
         <!-- end: Login form -->
 

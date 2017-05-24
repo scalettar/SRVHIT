@@ -86,7 +86,7 @@ if(isset($_POST['btn-send']))
 
   if($mail->Send())
   {
-   $msg = "Email Sent.";
+   $msg = "Email sent.";
   }
  }
  catch(phpmailerException $ex)
