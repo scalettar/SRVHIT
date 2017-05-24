@@ -115,6 +115,10 @@ $currentRow=$stmt->fetch(PDO::FETCH_ASSOC);
             <div class="quick-links">
               <a href="message.php?user=<?=$userRow['userid']?>"><img src="images/icon_mail.svg" alt=""></a>
               <a href="download.php"><img src="images/icon_doc.svg" alt=""></a>
+              <span class="favorited">
+                <img src="images/favorite.svg" alt="">
+                <img src="images/favorited.svg" alt="" style="display: none;">
+              </span>
             </div>
 
             <div class="avatar">
@@ -156,6 +160,8 @@ $currentRow=$stmt->fetch(PDO::FETCH_ASSOC);
       <p>© Copyright SRVHIT 2017</p>
     </footer>
     <!-- end: footer -->
+
+
 
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
